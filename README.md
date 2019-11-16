@@ -17,7 +17,7 @@ To install the application follow the instructions below:
 
 git clone git@github.com: https://github.com/gpelleran78/Friend-Finder
 
-cd friend-finder
+friend-finder
 
 npm install
 
