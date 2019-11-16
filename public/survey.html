@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>Friend Finder Platinum</title>
 
 	<!-- Link to the jQuery Library -->
-	<script
-	src="https://code.jquery.com/jquery-3.4.1.min.js"integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="crossorigin="anonymous"></script>
-	
-  	<!-- Including Font Awesome Icons -->
-  	<script src="https://kit.fontawesome.com/cc42c19879.js" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
-	<!-- Link to reset stylesheet -->
-	<link rel="stylesheet" href="css/reset.css">
+	<!-- Including Font Awesome Icons -->
+	<script src="https://kit.fontawesome.com/cc42c19879.js"></script>
 
-	<!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Link to reset stylesheet -->
+  <link rel="stylesheet" href="css/reset.css">
 
-	<!-- Compiled and minified Materialize CSS -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-	<!-- Compiled and minified Materialize JavaScript -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-          
-	<link rel="stylesheet" href="css/style.css">
+  <!-- Compiled and minified Materialize CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Compiled and minified Materialize JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+		
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -78,7 +78,8 @@
 
 						<div class="input-field col s12">
 							<h3>Question 2</h3>
-							<h5>Generally speaking, you rely more on your experience or would you make it up as you go?</h5>
+							<h5>Generally speaking, you rely more on your experience or would you make it up as you go?
+							</h5>
 							<select id="question2">
 								<option value="" disabled selected>Choose your option</option>
 								<option value="1">1 (Strongly Disagree)</option>
@@ -195,7 +196,9 @@
 
 						<!-- Survey Submit Button -->
 						<div>
-							<button class="btn waves-effect waves-light" type="submit" name="action" id="submitButton">Submit Responses
+
+							<button class="btn waves-effect waves-light" type="submit" name="action"
+								id="submitButton">Submit Responses
 								<i class="material-icons right">send</i>
 							</button>
 						</div>
@@ -210,13 +213,15 @@
 			<div class="row">
 				<div class="col l6 s12">
 					<h5 class="white-text">Friend Finder App</h5>
-					<p class="grey-text text-lighten-4">Thank you for taking the brief survey. Your responses will be used for training purposes only.</p>
+					<p class="grey-text text-lighten-4">Thank you for taking the brief survey. Your responses will be
+						used for training purposes only.</p>
 				</div>
 				<div class="col l4 offset-l2 s12">
 					<h5 class="white-text">Links</h5>
 					<ul>
 						<li><a class="grey-text text-lighten-3" href="/api/friends">API Friends List</a></li>
-						<li><a class="grey-text text-lighten-3" href="https://github.com/gpelleran78/Friend-Finder">GitHub Repo</a></li>
+						<li><a class="grey-text text-lighten-3"
+								href="https://github.com/gpelleran78/Friend-Finder">GitHub Repo</a></li>
 					</ul>
 				</div>
 			</div>
@@ -243,7 +248,7 @@
 	</div>
 
 	<script type="text/javascript">
-		$(document).ready(function() {
+		$(document).ready(function () {
 			$('select').material_select();
 			$('.modal').modal({
 				dismissible: false, // Modal can be dismissed by clicking outside of the modal
@@ -255,13 +260,13 @@
 			});
 		});
 		// Activate submit button
-		$('#submitButton').on('click', function(event) {
+		$('#submitButton').on('click', function (event) {
 			event.preventDefault();
 			// Gather user inputs
 			var userInput = {
 				name: $('#userName').val().trim(),
 				photo: $('#userPhoto').val().trim(),
-				scores:[
+				scores: [
 					$('#question1').val().trim(),
 					$('#question2').val().trim(),
 					$('#question3').val().trim(),
@@ -277,15 +282,16 @@
 			// console.log('userInput = ' + JSON.stringify(userInput));
 			// Add user inputs to friends list
 			$.post('/api/friends', userInput)
-      		.done(function(data) {
-      			// console.log('response = ' + JSON.stringify(data));
-      			// Set the name and image values of friend match
-      			$('#userMatch').html(data.matchName);
-		    	$("#userMatchImage").attr("src", data.matchImage);
-		    	// Pop open the modal dialog
-      			$('#modal1').modal('open');
-      		});
+				.done(function (data) {
+					// console.log('response = ' + JSON.stringify(data));
+					// Set the name and image values of friend match
+					$('#userMatch').html(data.matchName);
+					$("#userMatchImage").attr("src", data.matchImage);
+					// Pop open the modal dialog
+					$('#modal1').modal('open');
+				});
 		});
 	</script>
 </body>
+
 </html>
